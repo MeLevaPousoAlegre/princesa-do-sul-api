@@ -30,10 +30,6 @@ export default {
 
   getAllBusLineStops(busLine){
     return new Promise((resolve, reject) => {
-      const SERVER_BUS_LINE_FIELD = ''
-      const SERVER_SHOW_ADDRESS_OPTION = ''
-      const SERVER_SHOW_STOP_NAME_OPTION = ''
-
       request.post({
         url: BASE_URL,
         form: Object.assign(requestBullshitData, {
