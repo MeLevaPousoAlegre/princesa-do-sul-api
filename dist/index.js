@@ -24,6 +24,10 @@ var _request_bullshit = require('./request_bullshit.js');
 
 var _request_bullshit2 = _interopRequireDefault(_request_bullshit);
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var BASE_URL = 'http://www.princesadosul.com.br/cmh/PrevisaoChegada.aspx';
@@ -82,6 +86,14 @@ exports.default = {
           coming: stopWays[1]
         });
       });
+    });
+  },
+  getBusLineCurrentStops: function getBusLineCurrentStops(busLine) {
+    return this.getAllBusLineStops(busLine).then(function (stops) {
+      return {
+        coming: _lodash2.default.find(stops.coming, { isCurrentOne: true }),
+        going: _lodash2.default.find(stops.going, { isCurrentOne: true })
+      };
     });
   }
 };

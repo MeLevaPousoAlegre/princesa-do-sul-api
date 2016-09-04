@@ -1,6 +1,7 @@
 import request from 'request'
 import cheerio from 'cheerio'
 import requestBullshitData from './request_bullshit.js'
+import _ from 'lodash'
 
 const BASE_URL = 'http://www.princesadosul.com.br/cmh/PrevisaoChegada.aspx'
 
@@ -63,5 +64,13 @@ export default {
         })
       })
     })
+  },
+
+  getBusLineCurrentStops(busLine){
+    return this.getAllBusLineStops(busLine)
+      .then(stops => ({
+        coming: _.find(stops.coming, {isCurrentOne:true}),
+        going: _.find(stops.going, {isCurrentOne:true}),
+      }) )
   },
 }
